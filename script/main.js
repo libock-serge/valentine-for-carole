@@ -9,7 +9,7 @@ const CONFIG = {
   // Total days for card reveals (Feb 2-13 = 12 days, 1 card per day = 12 cards)
   totalDays: 12,
   // TEMPORARY: Set to true to unlock everything for testing
-  debugMode: true,
+  debugMode: false,
 };
 
 // ===== DOM Elements =====

@@ -1,300 +1,678 @@
-html {
+/* ===== Base Styles ===== */
+* {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --primary-pink: #ff6b9d;
+  --secondary-pink: #ffa5c3;
+  --light-pink: #fff0f5;
+  --deep-rose: #c44569;
+  --gold: #ffd700;
+  --white: #ffffff;
+  --text-dark: #4a3f55;
+  --text-light: #7a6b8a;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  margin: 0;
-  font-family: "Work Sans", sans-serif;
+  font-family: "Lato", sans-serif;
+  background: linear-gradient(135deg, #fff0f5 0%, #ffe4ec 50%, #ffd6e7 100%);
+  min-height: 100vh;
+  color: var(--text-dark);
+  overflow-x: hidden;
 }
 
 .container {
-  height: 100vh;
-  width: 100vh;
+  max-width: 1200px;
   margin: 0 auto;
-  text-align: center;
-  visibility: hidden;
+  padding: 20px;
   position: relative;
-  overflow: hidden;
-}
-
-.container div.six {
-  top: 10vh;
   z-index: 1;
 }
 
-.container div.seven,
-.container div.eight {
-  width: 100vw;
-  height: 100vh;
+/* ===== Floating Hearts Background ===== */
+.floating-hearts {
   position: fixed;
   top: 0;
-}
-
-.container > div {
-  position: absolute;
   left: 0;
-  right: 0;
-  top: 20vh;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
 }
 
-.one {
-  font-size: 4.5rem;
-}
-
-.one > img {
-  vertical-align: middle;
-  margin-bottom: 10px;
-  max-width: 100%;
-  height: auto;
-}
-
-.two {
-  font-size: 1.2rem;
-  font-weight: lighter;
-}
-
-.three {
-  font-size: 3rem;
-}
-
-.four .text-box {
-  width: 600px;
-  margin: 0 auto;
-  border: 3px solid #aaa;
-  border-radius: 5px;
-  padding: 10px;
-  position: relative;
-}
-
-.text-box p {
-  margin: 0;
-  text-align: left;
-}
-
-.text-box span {
-  visibility: hidden;
-}
-
-.text-box .fake-btn {
+.floating-hearts .heart {
   position: absolute;
-  right: 5px;
-  bottom: 5px;
-  color: #fff;
-  background-color: rgb(21, 161, 237);
-  padding: 5px 8px;
-  border-radius: 3px;
-}
-
-.five p {
   font-size: 2rem;
-  position: absolute;
-  left: 0;
-  right: 0;
+  color: var(--secondary-pink);
+  opacity: 0.3;
+  animation: floatHeart 15s infinite ease-in-out;
 }
 
-.idea-3 strong {
-  padding: 3px 5px;
-  border-radius: 3px;
-  display: inline-block;
+.floating-hearts .heart:nth-child(1) { left: 5%; animation-delay: 0s; font-size: 1.5rem; }
+.floating-hearts .heart:nth-child(2) { left: 15%; animation-delay: 2s; font-size: 2.5rem; }
+.floating-hearts .heart:nth-child(3) { left: 25%; animation-delay: 4s; font-size: 1.8rem; }
+.floating-hearts .heart:nth-child(4) { left: 45%; animation-delay: 1s; font-size: 2rem; }
+.floating-hearts .heart:nth-child(5) { left: 60%; animation-delay: 3s; font-size: 2.2rem; }
+.floating-hearts .heart:nth-child(6) { left: 75%; animation-delay: 5s; font-size: 1.6rem; }
+.floating-hearts .heart:nth-child(7) { left: 85%; animation-delay: 2.5s; font-size: 2.3rem; }
+.floating-hearts .heart:nth-child(8) { left: 95%; animation-delay: 4.5s; font-size: 1.9rem; }
+
+@keyframes floatHeart {
+  0%, 100% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.3;
+  }
+  90% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(-20vh) rotate(360deg);
+    opacity: 0;
+  }
 }
 
-.five .idea-5 {
-  font-size: 4rem;
+/* ===== Hero Section ===== */
+.hero {
+  text-align: center;
+  padding: 60px 20px 40px;
 }
 
-.idea-5 span,
-.idea-6 span,
-.wish-hbd span {
-  display: inline-block;
+.title {
+  font-family: "Playfair Display", serif;
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--deep-rose);
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 4px rgba(196, 69, 105, 0.1);
+  animation: fadeInDown 1s ease-out, titleGlow 3s ease-in-out infinite 1s;
 }
 
-.idea-6 span {
-  font-size: 15rem;
+@keyframes titleGlow {
+  0%, 100% {
+    text-shadow: 2px 2px 4px rgba(196, 69, 105, 0.1);
+  }
+  50% {
+    text-shadow: 2px 2px 20px rgba(255, 107, 157, 0.4), 0 0 40px rgba(255, 107, 157, 0.2);
+  }
 }
 
-.six {
+.subtitle {
+  font-size: 1.3rem;
+  color: var(--text-light);
+  font-weight: 300;
+  animation: fadeInUp 1s ease-out 0.3s both;
+}
+
+/* ===== Countdown Section ===== */
+.countdown-section {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 40px;
+  margin: 30px auto;
+  max-width: 700px;
+  box-shadow: 0 10px 40px rgba(255, 107, 157, 0.15);
+  text-align: center;
+  animation: slideInUp 0.8s ease-out 0.5s both;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.countdown-title {
+  font-family: "Playfair Display", serif;
+  font-size: 1.8rem;
+  color: var(--deep-rose);
+  margin-bottom: 30px;
+}
+
+.countdown-timer {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.time-unit {
+  background: linear-gradient(135deg, var(--primary-pink), var(--deep-rose));
+  border-radius: 15px;
+  padding: 20px 25px;
+  min-width: 100px;
+  box-shadow: 0 5px 20px rgba(255, 107, 157, 0.3);
+}
+
+.time-value {
+  display: block;
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1;
+}
+
+.time-label {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--light-pink);
+  margin-top: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ===== Love Cards Section ===== */
+.love-cards-section {
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.cards-title {
+  font-family: "Playfair Display", serif;
+  font-size: 2.5rem;
+  color: var(--deep-rose);
+  margin-bottom: 10px;
+}
+
+.cards-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-light);
+  margin-bottom: 40px;
+}
+
+.love-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ===== Love Card Flip Effect ===== */
+.love-card {
+  perspective: 1000px;
+  height: 180px;
+}
+
+.card-inner {
   position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform-style: preserve-3d;
 }
 
-.six img {
-  display: inline-block;
-  max-width: 45%;
-  height: auto;
+.love-card.revealed .card-inner {
+  transform: rotateY(180deg);
 }
 
-.six .hat {
+.card-front,
+.card-back {
   position: absolute;
-  width: 80px;
-  top: -35px;
-  left: 41.5%;
-  /* transform: scale(0.1); */
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
 }
 
-.baloons img {
-  display: inline-block;
+.card-front {
+  background: linear-gradient(135deg, var(--secondary-pink), var(--primary-pink));
+  color: var(--white);
+  box-shadow: 0 8px 25px rgba(255, 107, 157, 0.25);
+}
+
+.love-card.locked .card-front {
+  background: linear-gradient(135deg, #d4d4d4, #b0b0b0);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.day-label {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  opacity: 0.9;
+}
+
+.heart-icon {
+  font-size: 3rem;
+  animation: pulse 2s infinite;
+}
+
+.love-card.locked .heart-icon {
+  animation: none;
+  opacity: 0.5;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.card-back {
+  background: var(--white);
+  transform: rotateY(180deg);
+  box-shadow: 0 8px 25px rgba(196, 69, 105, 0.2);
+  border: 2px solid var(--secondary-pink);
+}
+
+.card-back p {
+  font-family: "Playfair Display", serif;
+  font-size: 1.2rem;
+  color: var(--deep-rose);
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* Anniversary Card Special Styling */
+.anniversary-card .card-front {
+  background: linear-gradient(135deg, var(--gold), #ffb347);
+  box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+}
+
+/* Override locked styling for anniversary cards - keep them golden */
+.anniversary-card.locked .card-front {
+  background: linear-gradient(135deg, var(--gold), #ffb347);
+  box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
+}
+
+.anniversary-card .card-back {
+  border: 2px solid var(--gold);
+}
+
+.anniversary-card.revealed .card-back {
+  animation: goldenGlow 2s ease-in-out infinite;
+}
+
+@keyframes goldenGlow {
+  0%, 100% {
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
+  }
+  50% {
+    box-shadow: 0 8px 40px rgba(255, 215, 0, 0.6);
+  }
+}
+
+/* Golden shimmer for locked anniversary cards */
+.anniversary-card.locked .card-front::after {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+}
+
+/* ===== Reveal Section ===== */
+.reveal-section {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 50px;
+  margin: 40px auto;
+  max-width: 600px;
+  box-shadow: 0 10px 40px rgba(255, 107, 157, 0.15);
+  text-align: center;
+}
+
+.reveal-title {
+  font-family: "Playfair Display", serif;
+  font-size: 2rem;
+  color: var(--deep-rose);
+  margin-bottom: 15px;
+}
+
+.reveal-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-light);
+  margin-bottom: 30px;
+}
+
+.video-container {
+  background: var(--light-pink);
+  border-radius: 15px;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.video-container blockquote {
+  margin: 0;
+}
+
+.reveal-message {
+  font-family: "Playfair Display", serif;
+  font-size: 1.3rem;
+  color: var(--primary-pink);
+  font-style: italic;
+}
+
+.reveal-locked {
+  padding: 40px;
+}
+
+.lock-icon {
+  font-size: 4rem;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.reveal-locked p {
+  color: var(--text-light);
+  font-size: 1.1rem;
+}
+
+.countdown-hint {
+  margin-top: 15px;
+  font-style: italic;
+  color: var(--primary-pink);
+  font-size: 1rem !important;
+}
+
+.hidden {
+  display: none;
+}
+
+/* ===== Footer ===== */
+.footer {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-light);
+}
+
+.footer p {
+  font-size: 1rem;
+}
+
+/* ===== Animations ===== */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Card Fade In Animation */
+.love-card.fade-in-up {
+  animation: cardFadeIn 0.6s ease-out both;
+}
+
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Sparkle Effect */
+.sparkle {
   position: absolute;
-  width: 200px;
+  width: 8px;
+  height: 8px;
+  background: var(--gold);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: sparkleAnim 1s ease-out forwards;
+  z-index: 10;
 }
 
-.baloons img:nth-child(even) {
-  left: 10%;
+@keyframes sparkleAnim {
+  0% {
+    transform: scale(0) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5) rotate(180deg);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(0) rotate(360deg);
+    opacity: 0;
+  }
 }
 
-.baloons img:nth-child(odd) {
-  right: 10%;
-}
-
-.baloons img:nth-child(3n + 0) {
-  left: 30%;
-}
-
-.eight svg {
-  width: 25px;
-  position: absolute;
+/* Confetti Animation */
+.confetti-container {
+  position: fixed;
   top: 0;
   left: 0;
-  visibility: hidden;
-  z-index: -1;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1000;
 }
 
-.eight svg:nth-child(1) {
-  top: 7vh;
-  left: 5vw;
-  fill: #bd6ecf;
+.confetti {
+  position: absolute;
+  top: -20px;
+  width: 10px;
+  height: 20px;
+  animation: confettiFall 4s ease-in-out forwards;
 }
 
-.eight svg:nth-child(2) {
-  top: 23vh;
-  left: 35vw;
-  fill: #7dd175;
-}
-
-.eight svg:nth-child(3) {
-  top: 33vh;
-  left: 23vw;
-  fill: #349d8b;
-}
-
-.eight svg:nth-child(4) {
-  top: 43vh;
-  left: 57vw;
-  fill: #347a9d;
-}
-
-.eight svg:nth-child(5) {
-  top: 68vh;
-  left: 7vw;
-  fill: #c66053;
-}
-
-.eight svg:nth-child(6) {
-  top: 42vh;
-  left: 77vw;
-  fill: #bfaa40;
-}
-
-.eight svg:nth-child(7) {
-  top: 68vh;
-  left: 83vw;
-  fill: #e3bae8;
-}
-
-.eight svg:nth-child(8) {
-  top: 86vh;
-  left: 37vw;
-  fill: #8762cb;
-}
-
-.eight svg:nth-child(9) {
-  top: 94vh;
-  left: 87vw;
-  fill: #9a90da;
-}
-
-.wish-hbd {
-  font-size: 3em;
-  margin: 0;
-  /* text-transform: uppercase; */
-}
-
-.wish h5 {
-  font-weight: lighter;
-  font-size: 2rem;
-  margin: 10px 0 0;
-}
-
-.nine p {
-  font-size: 2rem;
-  font-weight: lighter;
-}
-
-#replay {
-  z-index: 3;
-  cursor: pointer;
-}
-
-/* Media Queries */
-@media screen and (max-height: 1000px) {
-  .six .hat {
-    left: 40%;
+@keyframes confettiFall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
   }
 }
 
-@media screen and (max-height: 800px) {
-  .six .hat {
-    left: 37%;
+/* Celebration Animation for Reveal */
+.reveal-content.celebrate {
+  animation: celebratePop 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes celebratePop {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
   }
 }
 
-@media screen and (max-height: 700px) {
-  .six .hat {
-    left: 32%;
+/* Urgent Countdown Animation */
+.countdown-section.urgent .time-unit {
+  animation: urgentPulse 1s ease-in-out infinite;
+}
+
+@keyframes urgentPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 5px 20px rgba(255, 107, 157, 0.3);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 8px 30px rgba(255, 107, 157, 0.5);
   }
 }
 
-@media screen and (max-height: 850px) and (max-width: 450px) {
-  .six .hat {
-    left: 32%;
+/* Card Hover Effects */
+.love-card:not(.locked):hover .card-inner {
+  transform: rotateY(180deg) scale(1.02);
+}
+
+.love-card.revealed:hover .card-inner {
+  box-shadow: 0 15px 40px rgba(196, 69, 105, 0.3);
+}
+
+/* Shimmer Effect on Locked Cards */
+.love-card.locked .card-front::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  50%, 100% {
+    left: 100%;
   }
 }
 
-@media screen and (max-width: 500px) {
-  .container {
-    width: 90%;
+/* Heartbeat Animation for Heart Icons */
+.love-card:not(.locked) .heart-icon {
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  15% {
+    transform: scale(1.15);
+  }
+  30% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(1.1);
+  }
+}
+
+/* Glow Effect on Revealed Cards */
+.love-card.revealed .card-back {
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: 0 8px 25px rgba(196, 69, 105, 0.2);
+  }
+  50% {
+    box-shadow: 0 8px 35px rgba(255, 107, 157, 0.4);
+  }
+}
+
+/* ===== Responsive Design ===== */
+@media screen and (max-width: 768px) {
+  .title {
+    font-size: 2.5rem;
   }
 
-  .four .text-box {
-    width: 90%;
+  .subtitle {
+    font-size: 1.1rem;
   }
 
-  .text-box .fake-btn {
-    right: 5px;
-    bottom: -38px;
+  .countdown-section {
+    padding: 30px 20px;
   }
 
-  .idea-5 span {
-    display: block;
+  .time-unit {
+    min-width: 70px;
+    padding: 15px;
   }
 
-  .idea-6 span {
-    font-size: 10rem;
+  .time-value {
+    font-size: 2rem;
   }
 
-  .six .hat {
-    width: 50px;
-    top: -20px;
+  .love-cards-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
   }
 
-  .wish-hbd {
-    font-size: 2.3em;
+  .love-card {
+    height: 160px;
   }
 
-  .wish h5 {
-    font-size: 1.4rem;
+  .card-back p {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .title {
+    font-size: 2rem;
   }
 
-  .nine p {
-    font-size: 1.5rem;
-    font-weight: lighter;
+  .countdown-timer {
+    gap: 10px;
+  }
+
+  .time-unit {
+    min-width: 60px;
+    padding: 12px 10px;
+  }
+
+  .time-value {
+    font-size: 1.6rem;
+  }
+
+  .time-label {
+    font-size: 0.7rem;
+  }
+
+  .cards-title {
+    font-size: 1.8rem;
+  }
+
+  .love-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .reveal-section {
+    padding: 30px 20px;
   }
 }
